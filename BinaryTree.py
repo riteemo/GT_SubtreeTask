@@ -1,4 +1,5 @@
 from typing import List, Set
+from utils import *
 
 # класс для описания дерева
 class BinaryTree:
@@ -20,6 +21,7 @@ class BinaryTree:
                 self.dfs(neighbor, visited, exclude)
 
     # поиск поддеревьев без исключенных вершин
+    @timer
     def find_subtree(self, exclude: Set[int]) -> List[List[int]]:
         subtrees = []
         global_visited = set()
