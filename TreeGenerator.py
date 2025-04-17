@@ -1,6 +1,7 @@
 import random
 from typing import List, Tuple
 
+
 # класс для генерации деревьев
 class TreeGenerator:
     def generate_tree(self, size : int) -> List[Tuple[int, int]]:
