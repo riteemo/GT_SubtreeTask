@@ -6,23 +6,23 @@ from TreeVisualizer import TreeVisualizer
 
 
 def main():
-    generator = TreeGenerator()
-    converter = MatrixConverter()
-    file_manager = FileManager()
-    visualizer = TreeVisualizer()
+    generator = TreeGenerator() # объект генерации дерева
+    converter = MatrixConverter() # объект для конвертации
+    file_manager = FileManager() # объект для работы с файлами
+    visualizer = TreeVisualizer() # объект для визуализации
 
     filename = "tree.txt"
-    matrix = None
+    matrix = None # переменная для хранения матрицы смежности
     tree = None
-    n = 0
+    n = 0 # количество вершин в дереве
 
     while True:
         print("\nMenu:")
-        print("1 — Generate the tree")
-        print("2 — Load tree from file")
-        print("3 — Show the tree")
-        print("4 — Find subtrees without input vertices")
-        print("5 — Save tree to file")
+        print("1 — Generate the tree") # генерация дерева
+        print("2 — Load tree from file") # загрузка из файла
+        print("3 — Show the tree") # визуализация дерева
+        print("4 — Find subtrees without input vertices") # найти поддеревья, исключив заданные вершины
+        print("5 — Save tree to file") # сохранение в файл
         print("0 — Exit")
 
         try:
@@ -55,6 +55,7 @@ def main():
 
             elif choice == "3":
                 if tree:
+                    print("Full tree: ")
                     visualizer.print_tree(tree.graph, list(range(n)), 0)
                 else:
                     print("Firstly load or generate the tree")
@@ -65,6 +66,7 @@ def main():
                         exclude_input = input("Enter the numbers of the vertices to exclude separated by a space: ")
                         exclude = set(map(int, exclude_input.strip().split())) if exclude_input else set()
 
+                        # проверка на существование вершин в графе
                         invalid_nodes = [node for node in exclude if node < 0 or node >= n]
                         if invalid_nodes:
                             print(f"Error: there are non-existent vertices")

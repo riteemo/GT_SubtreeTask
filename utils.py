@@ -1,5 +1,7 @@
 import time
 
+
+# декоратор для измерения времени работы функций
 def timer(foo):
     def wrapper(*args, **kwargs):
         start_time = time.time()

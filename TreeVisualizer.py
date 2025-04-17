@@ -2,6 +2,7 @@ from typing import List, Set
 
 # класс для визуализации
 class TreeVisualizer:
+    # для визуализации дерева с конкретной вершины
     def print_tree(self, graph : List[List[int]], nodes : List[int], root: int, visited: Set[int] = None,
                    prefix : str = "", is_last : bool = True):
         if visited is None:
@@ -27,5 +28,4 @@ class TreeVisualizer:
                 print(f"Subtree {index + 1}:")
                 self.print_tree(graph, subtree, min(subtree))
         else:
-            print("Full tree:")
             self.print_tree(graph, list(range(len(graph))), 0)
