@@ -22,13 +22,14 @@ class BinaryTree:
     # поиск поддеревьев без исключенных вершин
     def find_subtree(self, exclude: Set[int]) -> List[List[int]]:
         subtrees = []
-        visited = set()
+        global_visited = set()
 
         for node in range(self.size):
             # если вершина не посещена и не исключена, начинаем обход - поддерево - с неё
-            if node not in visited and node not in exclude:
+            if node not in global_visited and node not in exclude:
                 subtree = set()
                 self.dfs(node, subtree, exclude)
                 subtrees.append(list(subtree))
+                global_visited.update(subtree)
 
         return subtrees
