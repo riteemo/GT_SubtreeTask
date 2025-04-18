@@ -5,18 +5,23 @@ from typing import List, Tuple
 # класс для генерации деревьев
 class TreeGenerator:
     def generate_tree(self, size : int) -> List[Tuple[int, int]]:
-        edges : List[Tuple[int, int]] = [] # массив с кортежами (ребрами)
-        children_counter = {0:0} # словарь для подсчета количества потомков
+        try:
+            if size <= 0:
+                raise ValueError("The number of vertices must be positive")
+            edges : List[Tuple[int, int]] = [] # массив с кортежами (ребрами)
+            children_counter = {0:0} # словарь для подсчета количества потомков
 
-        for i in range(1, size):
-            # возможные родители, у которых потомков меньше двух
-            possible_parents = [node for node, count in children_counter.items() if count < 2]
+            for i in range(1, size):
+                # возможные родители, у которых потомков меньше двух
+                possible_parents = [node for node, count in children_counter.items() if count < 2]
 
-            parent = random.choice(possible_parents)
-            edges.append((parent, i))
+                parent = random.choice(possible_parents)
+                edges.append((parent, i))
 
-            # обновление количества потомков
-            children_counter[parent] += 1
-            children_counter[i] = 0 # у новой вершины будет 0 потомков
+                # обновление количества потомков
+                children_counter[parent] += 1
+                children_counter[i] = 0 # у новой вершины будет 0 потомков
 
-        return edges
+            return edges
+        except ValueError as e:
+            print(f"Invalid value: {e}")

@@ -31,27 +31,23 @@ def main():
             if choice == "1":
                 try:
                     n = int(input("Input number of vertices: "))
-                    if n <= 0:
-                        raise ValueError("The number of vertices must be positive")
                     edges = generator.generate_tree(n)
-                    matrix = converter.tree_to_matrix(edges, n)
-                    tree = BinaryTree(matrix)
-                    print("Tree is generated.")
-                except ValueError as e:
-                    print(f"Invalid value: {e}")
+                    if edges:
+                        matrix = converter.tree_to_matrix(edges, n)
+                        tree = BinaryTree(matrix)
+                        print("Tree is generated.")
+                except ValueError:
+                    print("Error! Input positive int number")
 
             elif choice == "2":
-                try:
-                    filename = input("Enter the filename + .txt: ")
-                    matrix = file_manager.read_matrix(filename)
+                filename = input("Enter the filename + .txt: ")
+                matrix = file_manager.read_matrix(filename)
+                if converter.is_matrix(matrix):
                     n = len(matrix)
                     tree = BinaryTree(matrix)
                     print(f"The tree is loaded from {filename}")
-                except FileNotFoundError:
-                    print("File not found")
-                except Exception as e:
-                    print(f"Error loading: {e}")
-
+                else:
+                    print("Invalid matrix")
 
             elif choice == "3":
                 if tree:
@@ -66,17 +62,12 @@ def main():
                         exclude_input = input("Enter the numbers of the vertices to exclude separated by a space: ")
                         exclude = set(map(int, exclude_input.strip().split())) if exclude_input else set()
 
-                        # проверка на существование вершин в графе
-                        invalid_nodes = [node for node in exclude if node < 0 or node >= n]
-                        if invalid_nodes:
-                            print(f"Error: there are non-existent vertices")
+                        subtrees = tree.find_subtree(exclude)
+                        if not subtrees:
+                            print("No subtrees were found without the specified vertices")
                         else:
-                            subtrees = tree.find_subtree(exclude)
-                            if not subtrees:
-                                print("No subtrees were found without the specified vertices")
-                            else:
-                                print("\nFounded subtrees:")
-                                visualizer.visualize(tree.graph, subtrees)
+                            print("\nFounded subtrees:")
+                            visualizer.visualize(tree.graph, subtrees)
                     except ValueError:
                         print("Invalid input")
                 else:
@@ -84,12 +75,10 @@ def main():
 
             elif choice == "5":
                 if matrix is not None:
-                    try:
-                        filename = input("Enter the filename + .txt: ")
-                        file_manager.save_matrix(matrix, filename)
-                        print(f"The tree is saved to {filename}")
-                    except Exception as e:
-                        print(f"Error saving: {e}")
+                    filename = input("Enter the filename + .txt: ")
+                    file_manager.save_matrix(matrix, filename)
+                    print(f"The tree is saved to {filename}")
+
                 else:
                     print("Firstly load or generate the tree")
 
