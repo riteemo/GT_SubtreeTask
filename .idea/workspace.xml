@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c07a7f63-6662-4637-a632-f4dbf8fd82bc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BinaryTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/BinaryTree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/FileManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MatrixConverter.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TreeGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/TreeGenerator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TreeVisualizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/TreeVisualizer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tree.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tree.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +37,7 @@
     "Python.TreeGenerator.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "Merging main"
   }
 }]]></component>
   <component name="SharedIndexes">
