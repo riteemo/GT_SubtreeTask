@@ -1,15 +1,15 @@
-from typing import List
+from typing import List, Tuple
 
 
 # класс для работы с файлом
 class FileManager:
-    # сохранение матрицы в файл
-    def save_matrix(self, matrix : List[List[int]], filename : str) -> None:
+    # сохранение в файл
+    def save_graph(self, edges : List[Tuple[int, int]], filename : str) -> None:
         with open(filename, 'w') as file:
-            for row in matrix:
+            for row in edges:
                 file.write(' '.join(map(str, row)) + '\n')
 
-    # чтение матрицы из файла
-    def read_matrix(self, filename : str) -> List[List[int]]:
+    # чтение из файла
+    def read_graph(self, filename : str) -> List[Tuple[int, int]]:
         with open(filename, 'r') as file:
-            return [list(map(int, line.strip().split())) for line in file]
+            return [tuple(map(int, line.strip().split())) for line in file]

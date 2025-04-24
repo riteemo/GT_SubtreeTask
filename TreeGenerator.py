@@ -1,22 +1,25 @@
 import random
 from typing import List, Tuple
+from utils import timer
 
 
 # класс для генерации деревьев
 class TreeGenerator:
-    def generate_tree(self, size : int) -> List[Tuple[int, int]]:
-        edges : List[Tuple[int, int]] = [] # массив с кортежами (ребрами)
-        children_counter = {0:0} # словарь для подсчета количества потомков
+    #@timer
+    def generate_tree(self, size: int) -> List[Tuple[int, int]]:
+        edges: List[Tuple[int, int]] = []
+        children_counter = {0: 0}
+        candidates = [0]  # возможные родители
 
         for i in range(1, size):
-            # возможные родители, у которых потомков меньше двух
-            possible_parents = [node for node, count in children_counter.items() if count < 2]
-
-            parent = random.choice(possible_parents)
+            parent = random.choice(candidates)
             edges.append((parent, i))
 
-            # обновление количества потомков
             children_counter[parent] += 1
-            children_counter[i] = 0 # у новой вершины будет 0 потомков
+            if children_counter[parent] == 2:
+                candidates.remove(parent)  # больше не может быть родителем
+
+            children_counter[i] = 0
+            candidates.append(i)  # новый узел может быть родителем
 
         return edges

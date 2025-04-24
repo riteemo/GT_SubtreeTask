@@ -1,17 +1,17 @@
-from typing import List, Set
+from typing import List, Set, Tuple
 from utils import *
+
 
 # класс для описания дерева
 class BinaryTree:
-    def __init__(self, matrix : List[List[int]]):
-        self.size = len(matrix)
+    # @timer
+    def __init__(self, edges: List[Tuple[int, int]], size: int):
+        self.size = size
         self.graph = [[] for _ in range(self.size)]
 
-        # создание списка списков, где для каждой вершины будут храниться все соседи
-        for i in range(self.size):
-            for j in range(self.size):
-                if matrix[i][j] == 1:
-                    self.graph[i].append(j)
+        for u, v in edges:
+            self.graph[u].append(v)
+            self.graph[v].append(u)
 
     # поиск в глубину для обхода дерева
     def dfs(self, v : int, visited : Set[int], exclude : Set[int]):
