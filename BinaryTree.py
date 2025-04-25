@@ -30,18 +30,14 @@ class BinaryTree:
             subtrees = []
             global_visited = set()
 
-            invalid_nodes = [node for node in exclude if node < 0 or node >= self.size]
-            if invalid_nodes:
-                raise Exception(f"There are non-existent vertices")
-            else:
-                for node in range(self.size):
-                    # если вершина не посещена и не исключена, начинаем обход - поддерево - с неё
-                    if node not in global_visited and node not in exclude:
-                        subtree = set()
-                        self.dfs(node, subtree, exclude)
-                        subtrees.append(list(subtree))
-                        global_visited.update(subtree)
+            for node in range(self.size):
+                # если вершина не посещена и не исключена, начинаем обход - поддерево - с неё
+                if node not in global_visited and node not in exclude:
+                    subtree = set()
+                    self.dfs(node, subtree, exclude)
+                    subtrees.append(list(subtree))
+                    global_visited.update(subtree)
 
-                return subtrees
+            return subtrees
         except Exception as e:
             print(f"Error with subtrees  : {e}")
